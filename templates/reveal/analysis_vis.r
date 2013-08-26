@@ -80,7 +80,7 @@ x_manilla = shift7; y_manilla = y4b;
 #SF
 x5 = sort(c(rnorm(500,9,5), rnorm(500,18,5)));
 y5 = c(runif(125,5,15) + (1:125),sort(rnorm(125,200,30)),sort(rnorm(125,200,30),decreasing=T),runif(250,30,100),
-	sort(rnorm(125,200,50)),sort(rnorm(125,200,50),decreasing=T),runif(125,15,35)-(1:125))
+	sort(rnorm(125,300,50)),sort(rnorm(125,300,50),decreasing=T),runif(125,15,35)-(1:125))
 x5b = x5 + runif(500,0,0.5); #x1b[which(x1b > 24)] = 24;
 y5b = y5 +runif(500,1,50); 
 ll = which(y5b > 450)
@@ -99,8 +99,8 @@ y6 = c(runif(125,5,105) + (1:125),sort(rnorm(125,200,20)),sort(rnorm(125,200,20)
 	sort(rnorm(125,400,100)),sort(rnorm(125,400,100),decreasing=T),runif(125,5,205)-(1:125))
 x6b = x6 + runif(500,0,0.5); #x1b[which(x1b > 24)] = 24;
 y6b = y6 +runif(500,1,50); 
-ll = which(y6b > 550)
-y6b[ll] = 550 + runif(ll,0,50)*((-1)^(1:ll)) 
+ll = which(y6b > 450)
+y6b[ll] = 450 + runif(ll,0,50)*((-1)^(1:ll)) 
 zz = which(y6b < 0); y6b[zz] = runif(length(zz),20,60)
 kol3 = as.vector(col2rgb("green"))/1000; 
 shiftnyc = x6b - 5;
@@ -110,13 +110,26 @@ x_nyc = shiftnyc; y_nyc = y6b;
 #plot(x2b[shift3
 
 data = cbind(x_sf,y_sf,x_nyc,y_nyc,x_london,y_london,x_moscow,y_moscow, x_delhi,y_delhi,x_manilla,y_manilla);
-write.table(data,"~/Sites/decoded_presentation/templates/reveal/tweet_simulated_data.csv",quote=F,sep=",",row.names=F,col.names=F)
+write.csv(data,"~/Sites/decoded_presentation/templates/reveal/tweet_simulated_data.csv",quote=F,row.names=F)
+
+plot(x_london,y_london,ylab="", xlab = "",xlim=c(0,24),ylim=c(0,600),pch=16,col = rgb(0.7,kol[1],kol[3],alpha = 0.2),axes=F)
+points(x_moscow,y_moscow,pch=16,col = rgb(kol2[1],kol2[1],kol2[3],alpha = 0.2))
+points(x_delhi,y_delhi,pch=16,col = rgb(0.5,0.1,0.7,alpha = 0.2))
+points(x_nyc,y_nyc,pch=16,col = rgb(0.1,0.1,0.7,alpha = 0.2))
+points(x_sf,y_sf,pch=16,col = rgb(0.7,0.7,0.1,alpha = 0.2))
+points(x_manilla,y_manilla,pch=16,col = rgb(0.4,0.4,0.1,alpha = 0.2))
+axis(1,at=c(1,5,8.5,12.5,16,20,24),labels = c("midnight","6am","9am","noon","3pm","6pm","midnight"),line=2)
+axis(2, at= c(0,100,200,300,400,500), labels = c(0,100,200,300,400,500),line = 2)
+title(xlab="Time", line = 6)
+title(ylab="#Tweets (million)",line=6)
+legend("topleft",bty="n",col=c(rgb(0.7,kol[1],kol[3],alpha = 1),rgb(kol2[1],kol2[1],kol2[3],alpha = 1),rgb(0.5,0.1,0.7,alpha = 1)),legend=c("UK","Moscow","Delhi"),ncol=3,pch=c(16,16,16))
+
 
 png(file="~/Sites/decoded_presentation/templates/reveal/big_data_tweets_colour.png",width = 1033,height = 484)
 par(bg="white",mar=c(10,10,2,2))
-plot(shift0,y1b,ylab="", xlab = "",xlim=c(0,24),ylim=c(0,400),pch=16,col = rgb(0.7,kol[1],kol[3],alpha = 0.2),axes=F,cex=2,cex.lab=2)
-points(shift3,y2b,pch=16,col = rgb(kol2[1],kol2[1],kol2[3],alpha = 0.2),cex=2)
-points(shift6,y3b,pch=16,col = rgb(0.5,0.1,0.7,alpha = 0.2),cex=2)
+plot(x_london,y_london,ylab="", xlab = "",xlim=c(0,24),ylim=c(0,400),pch=16,col = rgb(0.7,kol[1],kol[3],alpha = 0.2),axes=F,cex=2,cex.lab=2)
+points(x_moscow,y_moscow,pch=16,col = rgb(kol2[1],kol2[1],kol2[3],alpha = 0.2),cex=2)
+points(x_delhi,y_delhi,pch=16,col = rgb(0.5,0.1,0.7,alpha = 0.2),cex=2)
 axis(1,at=c(1,5,8.5,12.5,16,20,24),labels = c("midnight","6am","9am","noon","3pm","6pm","midnight"),cex.axis=2,line=2)
 axis(2, at= c(0,100,200,300), labels = c(0,100,200,300),cex.axis=2, line = 2)
 title(xlab="Time", cex.lab = 2, line = 6)
