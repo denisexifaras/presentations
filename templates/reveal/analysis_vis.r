@@ -1,3 +1,5 @@
+library(Hmisc)
+
 png(file="~/Sites/decoded_presentation/templates/reveal/small_data_tweets.png",width = 1033,height = 484)
 par(bg="white",mar=c(10,10,2,2))
 y1 = c(5,6,10,11,18,20,120,150,80,10,15,20,25,30,50,100,200,75,10,5,10,3,7,5)
@@ -127,45 +129,154 @@ legend("topleft",bty="n",col=c(rgb(0.7,kol[1],kol[3],alpha = 1),rgb(kol2[1],kol2
 
 png(file="~/Sites/decoded_presentation/templates/reveal/big_data_tweets_colour.png",width = 1033,height = 484)
 par(bg="white",mar=c(10,10,2,2))
-plot(x_london,y_london,ylab="", xlab = "",xlim=c(0,24),ylim=c(0,400),pch=16,col = rgb(0.7,kol[1],kol[3],alpha = 0.2),axes=F,cex=2,cex.lab=2)
+plot(x_london,y_london,ylab="", xlab = "",xlim=c(0,24),ylim=c(0,600),pch=16,col = rgb(0.7,kol[1],kol[3],alpha = 0.2),axes=F,cex=2,cex.lab=2)
 points(x_moscow,y_moscow,pch=16,col = rgb(kol2[1],kol2[1],kol2[3],alpha = 0.2),cex=2)
 points(x_delhi,y_delhi,pch=16,col = rgb(0.5,0.1,0.7,alpha = 0.2),cex=2)
+points(x_nyc,y_nyc,pch=16,col = rgb(0.1,0.1,0.7,alpha = 0.2),cex=2)
+points(x_sf,y_sf,pch=16,col = rgb(0.7,0.7,0.1,alpha = 0.2),cex=2)
+points(x_manilla,y_manilla,pch=16,col = rgb(0.4,0.4,0.1,alpha = 0.2),cex=2)
 axis(1,at=c(1,5,8.5,12.5,16,20,24),labels = c("midnight","6am","9am","noon","3pm","6pm","midnight"),cex.axis=2,line=2)
-axis(2, at= c(0,100,200,300), labels = c(0,100,200,300),cex.axis=2, line = 2)
+axis(2, at= c(0,100,200,300,400,500), labels = c(0,100,200,300,400,500),cex.axis=2, line = 2)
 title(xlab="Time", cex.lab = 2, line = 6)
 title(ylab="#Tweets (million)",cex.lab = 2,line=6)
-legend("topleft",bty="n",col=c(rgb(0.7,kol[1],kol[3],alpha = 1),rgb(kol2[1],kol2[1],kol2[3],alpha = 1),rgb(0.5,0.1,0.7,alpha = 1)),legend=c("UK","Moscow","Delhi"),ncol=3,pch=c(16,16,16),cex=2)
+legend("topleft",bty="n",col=c(rgb(0.7,0.7,0.1,alpha = 1),rgb(0.1,0.1,0.7,alpha = 1),rgb(0.7,kol[1],kol[3],alpha = 1),rgb(kol2[1],kol2[1],kol2[3],alpha = 1),rgb(0.5,0.1,0.7,alpha = 1),rgb(0.4,0.4,0.1,alpha = 1)),legend=c("SF","NYC","London","Moscow","Delhi","Manilla"),ncol=6,pch=c(16,16,16),cex=2)
 dev.off();
 
 png(file="~/Sites/decoded_presentation/templates/reveal/big_data_tweets_black.png",width = 1033,height = 484)
 par(bg="white",mar=c(10,10,2,2))
-plot(shift0,y1b,ylab="", xlab = "",xlim=c(0,24),ylim=c(0,400),pch=16,col = rgb(0,0,0,alpha = 0.2),axes=F,cex=2,cex.lab=2)
-points(shift3,y2b,pch=16,col = rgb(0,0,0,alpha = 0.2),cex=2)
-points(shift6,y3b,pch=16,col = rgb(0,0,0,alpha = 0.2),cex=2)
+plot(x_london,y_london,ylab="", xlab = "",xlim=c(0,24),ylim=c(0,600),pch=16,col = rgb(0,0,0,alpha = 0.2),axes=F,cex=2,cex.lab=2)
+points(x_moscow,y_moscow,pch=16,col = rgb(0,0,0,alpha = 0.2),cex=2)
+points(x_delhi,y_delhi,pch=16,col = rgb(0,0,0,alpha = 0.2),cex=2)
+points(x_nyc,y_nyc,pch=16,col = rgb(0,0,0,alpha = 0.2),cex=2)
+points(x_sf,y_sf,pch=16,col = rgb(0,0,0,alpha = 0.2),cex=2)
+points(x_manilla,y_manilla,pch=16,col = rgb(0,0,0,alpha = 0.2),cex=2)
 axis(1,at=c(1,5,8.5,12.5,16,20,24),labels = c("midnight","6am","9am","noon","3pm","6pm","midnight"),cex.axis=2,line=2)
-axis(2, at= c(0,100,200,300), labels = c(0,100,200,300),cex.axis=2, line = 2)
+axis(2, at= c(0,100,200,300,400,500), labels = c(0,100,200,300,400,500),cex.axis=2, line = 2)
 title(xlab="Time", cex.lab = 2, line = 6)
 title(ylab="#Tweets (million)",cex.lab = 2,line=6)
+#legend("topleft",bty="n",col=c(rgb(0.7,0.7,0.1,alpha = 1),rgb(0.1,0.1,0.7,alpha = 1),rgb(0.7,kol[1],kol[3],alpha = 1),rgb(kol2[1],kol2[1],kol2[3],alpha = 1),rgb(0.5,0.1,0.7,alpha = 1),rgb(0.4,0.4,0.1,alpha = 1)),legend=c("SF","NYC","London","Moscow","Delhi","Manilla"),ncol=6,pch=c(16,16,16),cex=2)
 dev.off();
 
 
-individual <- paste("Individual", 1:10, sep=" ")
+#####################################################################################################################
 
-n=100;
-age = floor(rnorm(10,50,10))
+n=1000;
+individual <- paste("Indiv", 1:n, sep=" ")
+age = floor(rnorm(n,50,30));
+if (any(age < 20)){
+	ll = which(age < 20);
+	age[ll] = 20 + runif(length(ll),0,30)
+}
+if (any(age > 70)){
+	ll = which(age > 70);
+	age[ll] = 70 - runif(length(ll),0,30)
+}
+age = floor(age);
 gender = sample(c("Male","Female"),n,replace=T)
 Mult.Sclerosis = c();
-for (i in 1:10){
+for (i in 1:n){
 	Mult.Sclerosis[i] = "No";
 	u = runif(1); 
-	if (gender[i] == "Male"){ if (u < 0.1){ Mult.Sclerosis[i] = "Yes"; } }
-	if (gender[i] == "Female"){ if (u<0.4){ Mult.Sclerosis[i] = "Yes" } }
+	if (gender[i] == "Male"){ if (u < 0.01){ Mult.Sclerosis[i] = "Yes"; } }
+	if (gender[i] == "Female"){ if (u<0.05){ Mult.Sclerosis[i] = "Yes" } }
 }
-Mult.Sclerosis[10] = "Yes";
+#Mult.Sclerosis[10] = "Yes";
 #Mult.Sclerosis[8] = "No";
 #Mult.Sclerosis[7] = "No";
 
 MS_data = cbind(individual,gender,age,Mult.Sclerosis);
 MS_data = data.frame(MS_data)
 
+gend = 1*(gender == "Male")
+status = 1*(Mult.Sclerosis == "Yes")
 
+prob.case.if.F = length(which(status[which(gend == 0)] == 1))/length(which(gend == 0))
+prob.case.if.M = length(which(status[which(gend == 1)] == 1))/length(which(gend == 1))
+ 
+barplot(c(prob.case.if.M,prob.case.if.F),ylim=c(0,0.1),names.arg = c("Male","Female"),col="darkgreen",ylab="Probability")
+
+myfun <- function(vect){return(length(which(vect == 1))/length(vect))}
+n_per_bin <- function(vect){return(length(vect))}
+
+
+depth.class <- cut(age, seq(range(age)[1],range(age)[2]+1,by=5), include.lowest = TRUE)
+prop.status <- tapply(status, depth.class, myfun)
+bins_sizes <- tapply(status, depth.class, n_per_bin)
+
+
+CI.u.status <- prop.status + 1.96*sqrt( prop.status*(1-prop.status)/bins_sizes)
+CI.l.status <- prop.status - 1.96*sqrt( prop.status*(1-prop.status)/bins_sizes)
+plot(seq(range(age)[1],range(age)[2]+1,by=5)[-1] - 2.5,prop.status,ylim=c(0,0.2),pch=16,col="darkblue")
+
+png(file="~/Sites/decoded_presentation/templates/reveal/MS_age.png",width = 500,height = 484)
+par(mfrow=c(2,1),mar=c(7,7,2,2))
+barplot(c(prob.case.if.M,prob.case.if.F),ylim=c(0,0.2),names.arg = c("",""),col="darkgreen",ylab="",
+	cex.lab=4,axes=F,cex.axis = 2)
+axis(1, at = c(0.7,1.9),labels = c("Male","Female"),line=2,cex.axis = 1.5,tck = F)
+axis(1, at = c(0.7,1.9),labels = c("",""),line=2,tck = F, col="white",lty=5)
+axis(2,at=seq(0,0.2,length = 5),labels=seq(0,0.2,length = 5),line=2,cex.axis = 1.5);
+title(ylab="Probability MS",line=5, cex.lab=2)
+
+
+errbar((seq(range(age)[1],range(age)[2]+1,by=5)[-1] - 2.5),prop.status,CI.u.status, CI.l.status,ylim=c(min(CI.l.status),0.2),pch=16,cex=2,lwd=2,
+col="darkblue",lty=2,axes = F,xlab="",ylab="")
+abline(mean(status),0,lwd=2,lty=2,col=2)
+axis(1,at=(seq(range(age)[1],range(age)[2]+1,by=5)[-1] - 2.5),labels = sort(unique(depth.class)),line=2,cex.axis = 1.5)
+axis(2,at=seq(0,0.2,length = 5),labels=seq(0,0.2,length = 5),line=2,cex.axis = 1.5);
+title(xlab="Age (years)", line = 5,cex.lab = 1.5)
+title(ylab="Probability MS",line=5, cex.lab=2)
+dev.off();
+
+library(gridExtra)
+library(graphics)
+
+png(file="~/Sites/decoded_presentation/templates/reveal/MS_data.png",width = 1100,height = 484)
+grid.table(MS_data[1:17,]);
+dev.off();
+
+
+
+png(file="~/Sites/decoded_presentation/templates/reveal/MS_age2.png",width = 1100,height = 484)
+
+split.screen(c(1,2))        # split display into two screens
+split.screen(c(2,1), screen = 2) #
+screen(1)
+grid.table(MS_data[1:20,]);
+
+screen(3)
+par(mfrow=c(2,1),mar=c(7,7,2,2))
+barplot(c(prob.case.if.M,prob.case.if.F),ylim=c(0,0.2),names.arg = c("",""),col="darkgreen",ylab="",
+	cex.lab=4,axes=F,cex.axis = 2)
+axis(1, at = c(0.7,1.9),labels = c("Male","Female"),line=2,cex.axis = 1.5,tck = F)
+axis(1, at = c(0.7,1.9),labels = c("",""),line=2,tck = F, col="white",lty=5)
+axis(2,at=seq(0,0.2,length = 5),labels=seq(0,0.2,length = 5),line=2,cex.axis = 1.5);
+title(ylab="Probability MS",line=5, cex.lab=2)
+
+
+screen(4);
+par(mfrow=c(2,1),mar=c(7,7,2,2))
+errbar((seq(range(age)[1],range(age)[2]+1,by=5)[-1] - 2.5),prop.status,CI.u.status, CI.l.status,ylim=c(min(CI.l.status),0.2),pch=16,cex=2,lwd=2,
+col="darkblue",lty=2,axes = F,xlab="",ylab="")
+abline(mean(status),0,lwd=2,lty=2,col=2)
+axis(1,at=(seq(range(age)[1],range(age)[2]+1,by=5)[-1] - 2.5),labels = sort(unique(depth.class)),line=2,cex.axis = 1.5)
+axis(2,at=seq(0,0.2,length = 5),labels=seq(0,0.2,length = 5),line=2,cex.axis = 1.5);
+title(xlab="Age (years)", line = 5,cex.lab = 1.5)
+title(ylab="Probability MS",line=5, cex.lab=2)
+close.screen(all = TRUE)  
+
+dev.off();
+
+par(bg = "white")           # default is likely to be transparent
+split.screen(c(1,2))        # split display into two screens
+split.screen(c(2,1), screen = 2) #
+screen(1)
+grid.table(head(MS_data))
+screen(3)
+plot(1:10)
+screen(4)
+plot(15:20)
+close.screen(all = TRUE)  
+
+#git add .
+#git commit -m "update 3"
+#git push -u origin master
