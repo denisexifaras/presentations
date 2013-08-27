@@ -53,7 +53,7 @@ shift0[which(shift0 < 0)] = shift0[(which(shift0<0))] + 24;
 kol = as.vector(col2rgb("blue"))/1000; 
 x_london = shift0; y_london = y1b;
 
-num.languages <- floor(rexp(length(y1),1)); num.languages = num.languages + 1;
+num.languages <- floor(runif(length(y1),2,7)); #num.languages = num.languages + 3;
 num.hashtags <- floor(runif(length(y1),1,4))
 slang <- round(rnorm(length(y1),30,30),2)
 images <- rpois(length(y1),40)
