@@ -83,22 +83,181 @@
                     <section>
 
                         <h1> Storage</h1>
-                        <h2> Hardware</h2>
+                        <p>
+                            <ol>
+                                <li>Where?</li>
+                                <li>  </li>
+                                <li>  </li>
+                            </ol>
+                        </p>
+
+                        <img src = "a_computer.png">
 
                         <aside class="notes">
                             <p>
-                                {{some text}}
+                                {{notes}}
+                                -When we talk about big data typically we are referring data that is either high-dimensional and/or >>GB in size when zipped(!)
+
+                                -need both space and hardware that will support input/output - multiple users accessing data, transferring it around and writing out data, simultaneously.
+                                (this is a real problem - bring up WTCHG)
+
+                                Where do you store it?
+                                -who will need to access it? obviously we can't know this definitely but it's a legitimate concern, especially as everything becomes more and more interdisciplinary. 
+                                -people access to the same server? or should it be online? Is it even downloadable? Need an ftp service? How long would it take to transfer files?
+                                -security? Could you solve your storage problem on the cloud?
+                                ... native american example
+                                
+                                -Looking ahead, this is a solvable problem.
+
                             </p>
                         </aside>
+                    </section>
+
+                    <!-- Vertical Slide #1b-->
+                    <section>
+                        <h1>Hardware</h1>
+                        <p>
+                            <ol>
+                                <li>Where?</li>
+                                <li>  </li>
+                                <li>  </li>
+                            </ol>
+                        </p>
+
+                        <img src = "a_big_computer.png">
+
+                    </section>
+
+                    <!-- Vertical Slide #1c-->
+                    <section>
+                        <h1>Hardware</h1>
+                        <p>
+                            <ol>
+                                <li>Where?</li>
+                                <li>  </li>
+                                <li>  </li>
+                            </ol>
+                        </p>
+
+                        <img src = "many_computers.png">
+
+                    </section>
+
+                    
+                    <!-- Vertical Slide #2 -->
+                    <section>
+                        <h1>Storage</h1>
+                        <h2>Hardware</h2>
+                        <p>
+                            <ol>
+                                <li>Where?</li>
+                                <li>How?</li>
+                                <li> </li>
+                            </ol>
+                        </p>
+
+                         <img src = "a_network.png">
+
+                        <aside class="notes">
+                            <p>
+                                -NEED INFRASTRUCTURE
+                                -how do you store it? All in one blob? 
+                                -relational or non-relational: many files, many directories?
+                                -how many people will need to access at any one time?
+                                -will they need to access all of it or should it very be straightforward to pull out sub-chunks?
+                                - leq 2K files/directory
+                                -format? Json - great for web design but would be a really bad idea for genomic data for instance: in my current project I use genomic data for 5000 individuals at 1M DNA positions.
+                                Not only do I know what their DNA is, but how confidently it was obtained in the lab (so for each person I have 1M of these scores too), I have a bunch of measurements for specific genes that I am interested, their gender, whether they smoke, their age and dietery habits. 
+                                Storing this in json format - I have not calculated but would argue with conviction - is impossible.)
+                                -again, who will need to use it? What software do they use? What analysis will they perform?
+                                -csv vs vcf vs plain text vs json
+
+                                -should always be such that it allows for parallelisation of jobs on cluster
+
+                                -of course it's not just accessing and managing but writing out afterwards as well...
+
+                                -this is a solvable problem.
+
+                            </p>
+                        </aside>
+                    </section>
+
+                    <section>
+
+                        <h1>Storage</h1>
+                        <h2>Hardware</h2>
+                        <p>
+                            <ol>
+                                <li>Where?</li>
+                                <li>How?</li>
+                                <li>Who?</li>
+                            </ol>
+                        </p>
+
+                        <img src = "network_users.png">
+
                     </section>
 
                 </section>
 
                 <!-- Slide #4-->
                 <section>
-                    <h1>Storage</h1>
-                    <h2>Software</h2>
-                    <img src = "storage_software.png">
+
+                    <!-- Vertical Slide #1-->
+                    <section>
+                        <h1>Storage</h1>
+                        <h2>Software</h2>
+
+                        <img src="analyse_tweets.png">
+                        <!--
+                        <br>
+                        <h3> Natural Language Processing </h3>
+                        <br>
+                        <h3>
+                        <ul>
+                            <li> python <h5> (view and manage tweets) </h5> </li> <br>
+                            <li> c++ <h5> (sophisticated statistical analysis)</li> <br>    
+                            <li> R/matlabe  <h5> (results?) </li> <br>
+                            <li> html, css, javascript <h5> (online results?) </li> <br>
+                        </ul>
+                        <br>
+                        <ul>
+                            <li>Parallelisation and clusters?</li>
+                        </ul>
+                        <h3> -->
+                        <aside class="notes">
+                            this is not just a big data issue
+                            1. which software?
+                            1b. Need to consider which analyses we will carry out - to decide on choice of software
+                            (millions of tweets - some NLP)
+                            (python: handling the data - good for dealing with text)
+                            (python: basic NLP)
+                            (c++: NLP using more stophisticated stat tools (e.g. HMM, a bayesian approach?) )
+                            (R or matlab  to summarise results)
+                            (and then/or perhaps html, css, javascript to read those into a browser)
+                            2. ulitmately it comes down to: speed vs memory vs and who the user is
+
+                            All this while:
+                            2b. Construct a pipeline - this of the order/sequence of jobs
+                            3. and whether you're working with other people (this is not a big data problem only)
+                            4. and whether it's on a cluster
+
+                            -schematic of a pipeline - what are the different pieces of software, how do they work together
+                            all the various bits of software that are involved
+                            -don't mention a pipeline
+
+                        </aside>
+                    </section>
+
+                    <!-- Vertical Slide #2 -->
+                    <section>
+
+                        <h1>Software</h1>
+                        <h2>Who's happy?</h2>
+
+                         <img src="analyse_tweets_software.png">
+
+                    </section>
 
                 </section>
 
@@ -107,9 +266,8 @@
 
                     <!-- Vertical Slide #1 -->
                     <section>
-                        <h1> Analysis & Visualisation</h1><br>
-                        <br><br><br><br>
-                        <img src = "tweet_small_Data.png"> <!-- should go to the left of img -->
+                        <h1> Analysis & Visualisation</h1>
+                        <br><br>
                         <img src = "small_data_tweets.png">
                         
                         <aside class="notes">
@@ -120,17 +278,9 @@
                         </aside>
                     </section>
 
-                    <!-- Vertical Slide #2b -->
-                    <section>
-                        <h1> Analysis & Visualisation</h1><br>
-                        <br><br><br><br>
-                        <img src = "tweet_big_Data.png"> <!-- ideally would like some dots indicating more columns -->
-                    </section>
-
-                    <!-- Vertical Slide #2b -->
+                    <!-- Vertical Slide #2 -->
                     <section>
                     <h1> Analysis & Visualisation</h1>
-                    <br><br><br><br>
 
                     <img src = "big_data_tweets_black.png">
 
@@ -148,7 +298,7 @@
                     <!-- Vertical Slide #3 -->
                     <section>
                     <h1> Analysis & Visualisation</h1>
-                    <br><br><br><br>
+                    <br><br><br>
                     <img src = "big_data_tweets_colour.png">
 
                     <aside class="notes">
@@ -175,15 +325,14 @@
                     <br><br>
                     <h2>Volume, Velocity, Variety </h2>
 
-                    <p>It is a 2-gear problem:</p><br>
+                    <p>It is a 2-gear problem:</p>
                     <ol>
-                        <li> Exhaustive, rigorous back-end </li><br>
+                        <li> Exhaustive, rigorous back-end </li><br><br>
                         <li> Meaningful and effective visualisation </li><br><br>
                     </ol>
 
                     <p> No single golden rule approach </p>
-                    <img src ="general_pipeline.png">
-                    <!--
+
                     <ol>
                         <li>Hardware</li> 
                         <li>Early visualisation</li> 
@@ -192,7 +341,7 @@
                         <li>Analysis (execution; clusters?) </li>
                         <li>Visualisation</li>
                     </ol>
-                    <br><br><br> -->
+                    <br><br><br>
                     <h3> Speed vs Memory </h3>
 
                     <aside class="notes">
@@ -260,7 +409,7 @@
                 <section>
                     <h1>The Enemy of 'Big' is 'Bigger'</h1>
                     <br><br>
-                    <img src = "enemy_of_big.png">
+                    <img src = "size_and_scaling_large.png">
 
                     <aside class="notes">
                         -scaling

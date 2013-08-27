@@ -12,6 +12,28 @@ title(xlab="Time", cex.lab = 2, line = 6)
 title(ylab="#Tweets (million)",cex.lab = 2,line=6)
 dev.off();
 
+small_data = cbind(x1,y1);
+colnames(small_data) = c("Time", "No.Tweets")
+small_data = data.frame(small_data)
+
+require(png)
+require(grid)
+z <- readPNG("~/Sites/decoded_presentation/templates/reveal/tweet_small_data.png")
+
+## Function to draw your statement
+copyright.draw <- function(label, image, x, y, size, ...) {
+  lab <- textGrob(label = label,
+    x = unit(x, "npc"), y = unit(y, "npc"),
+    just = c("left", "centre"), gp = gpar(...))
+  logo <- rasterGrob(image = image,
+    x = unit(x, "npc") + unit(1, "grobwidth", lab), y = unit(y, "npc"),
+    width = unit(size, "cm"), height = unit(size, "cm"),
+    just = c("left", "centre"), gp = gpar(...))
+  grid.draw(lab)
+  grid.draw(logo)
+}
+
+
 #San Fran, NYC, London, Moscow, Delhi, Manilla
 #10, 13, 18, 21, 23,1
 #-8, -5, 3, 5, 7
@@ -30,6 +52,21 @@ shift0[which(shift0 > 24)] = shift0[(which(shift0>24))] - 24;
 shift0[which(shift0 < 0)] = shift0[(which(shift0<0))] + 24;
 kol = as.vector(col2rgb("blue"))/1000; 
 x_london = shift0; y_london = y1b;
+
+num.languages <- floor(rexp(length(y1),1)); num.languages = num.languages + 1;
+num.hashtags <- floor(runif(length(y1),1,4))
+slang <- round(rnorm(length(y1),30,30),2)
+images <- rpois(length(y1),40)
+connections <- rpois(length(y1),700)
+Self <- round(rnorm(length(y1),170,30),2)
+Facebook <- round(rnorm(length(y1),250,30),2)
+Links <- round(rnorm(length(y1),750,100),2)
+
+
+big_data = cbind(round(shift0,2),round(y1,2),num.languages,num.hashtags,Links,slang,images,Facebook,connections,Self);
+colnames(big_data) = c("Time", "No.Tweets","Languages","Hashes","Links","Slang","Images","Facebook","Connections","Self")
+big_data = data.frame(big_data)
+
 
 #moscow
 x2 = sort(c(rnorm(500,9,5), rnorm(500,18,5)));
